@@ -568,7 +568,7 @@ type subReporter struct {
 
 func (s *subReporter) OK(message string) {
 	if err := s.base.setStatus(s.id, StatusOK, message, nil); err != nil {
-		log.WithError(err).Warnf("could not set OK status on subreporter %q", s.id)
+		log.WithError(err).Debugf("could not set OK status on subreporter %q", s.id)
 		return
 	}
 	s.scheduleRealize()
@@ -576,7 +576,7 @@ func (s *subReporter) OK(message string) {
 
 func (s *subReporter) Degraded(message string, err error) {
 	if err := s.base.setStatus(s.id, StatusDegraded, message, err); err != nil {
-		log.WithError(err).Warnf("could not set degraded status on subreporter %q", s.id)
+		log.WithError(err).Debugf("could not set degraded status on subreporter %q", s.id)
 		return
 	}
 	s.scheduleRealize()
