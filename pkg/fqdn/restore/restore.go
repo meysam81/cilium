@@ -94,10 +94,10 @@ func (r IPRules) Sort() IPRules {
 // Sort is only used for testing
 // Sorts in place, but returns DNSRules for convenience
 func (r DNSRules) Sort() DNSRules {
-	for port, ipRules := range r {
+	for pp, ipRules := range r {
 		if len(ipRules) > 0 {
 			ipRules = ipRules.Sort()
-			r[port] = ipRules
+			r[pp] = ipRules
 		}
 	}
 	return r
