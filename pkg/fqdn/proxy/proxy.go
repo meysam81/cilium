@@ -12,7 +12,7 @@ import (
 type DNSProxier interface {
 	GetRules(uint16) (restore.DNSRules, error)
 	RemoveRestoredRules(uint16)
-	UpdateAllowed(endpointID uint64, destPort uint16, newRules policy.L7DataMap) error
+	UpdateAllowed(endpointID uint64, destPort restore.PortProto, newRules policy.L7DataMap) error
 	GetBindPort() uint16
 	SetRejectReply(string)
 	RestoreRules(op *endpoint.Endpoint)
