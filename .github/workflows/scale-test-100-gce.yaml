@@ -65,7 +65,8 @@ jobs:
 
           # Setup Cilium install options
           CILIUM_INSTALL_DEFAULTS="${{ steps.default_vars.outputs.cilium_install_defaults }} \
-            --wait=false"
+            --wait=false \
+            --set pprof.enabled=true"
 
           CLUSTER_NAME="${{ env.test_name }}-${{ env.cluster_base_name }}"
 
@@ -201,6 +202,7 @@ jobs:
             --testoverrides=./testing/overrides/load_throughput.yaml \
             --testoverrides=./testing/experiments/use_simple_latency_query.yaml \
             --testoverrides=./testing/prometheus/not-scrape-kube-proxy.yaml \
+            --testoverrides=../../contrib/cl2-modules/cilium-agent-pprofs.yaml \
             2>&1 | tee cl2-output.txt
 
       - name: Get sysdump
